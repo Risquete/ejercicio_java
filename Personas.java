@@ -1,5 +1,6 @@
 //Esta clase es para guardar datos personales
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Personas {
@@ -8,6 +9,7 @@ public class Personas {
     private int edad;
     private String dni;
     private HashMap<String, Integer> proyectos;
+    private ArrayList<String> skills;
 
     // constructor
     public Personas() {
@@ -16,14 +18,17 @@ public class Personas {
         edad = 0;
         dni = "";
         proyectos = new HashMap<String, Integer>();
+        skills = new ArrayList<String>();
     }
 
-    public Personas(String nombre, String apellidos, int edad, String dni, HashMap<String, Integer> proyectos) {
+    public Personas(String nombre, String apellidos, int edad, String dni, HashMap<String, Integer> proyectos,
+            ArrayList<String> skills) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.edad = edad;
         this.dni = dni;
         this.proyectos = proyectos;
+        this.skills = skills;
     }
 
     public String getNombre() {
@@ -66,11 +71,47 @@ public class Personas {
         this.proyectos = proyectos;
     }
 
-
     @Override
     public String toString() {
         return "Personas [nombre=" + nombre + ", apellidos=" + apellidos + ", edad=" + edad + ", dni=" + dni
                 + ", proyectos=" + proyectos + "]";
+    }
+
+    public ArrayList<String> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(ArrayList<String> skills) {
+        this.skills = skills;
+    }
+
+    public void addSkills(String skills) {
+        this.skills.add(skills);
+    }
+
+    public void borrarSkills(String skills) {
+        if (this.skills.contains(skills)) {
+            this.skills.remove(skills);
+        } else {
+            System.out.println("No existe");
+        }
+
+    }
+
+    public void addProyecto(String id, int horas) {
+        if (proyectos.get(id) == null) {
+            proyectos.put(id, horas);
+        } else {
+            System.out.println("El proyecto ya está añadido a esta persona.");
+        }
+    }
+
+    public void eliminarProyecto(String id) {
+        proyectos.remove(id);
+    }
+
+    public int contarHoras() {
+        return proyectos.values().stream().mapToInt(Integer::intValue).sum();
     }
 
 }

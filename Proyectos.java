@@ -4,26 +4,25 @@ import java.util.HashMap;
 public class Proyectos {
     private String idProyecto;
     private int horas;
-    private ArrayList<String> caracteristicas;
+    private ArrayList<String> skills;
     private String titulo;
-    private HashMap<String, Integer> trabajaores;
+    private HashMap<String, Integer> trabajadores;
 
     public Proyectos() {
         idProyecto = "";
         horas = 0;
-        this.caracteristicas = new ArrayList<String>();
+        this.skills = new ArrayList<String>();
         this.titulo = "";
-        this.trabajaores = new HashMap<String, Integer>();
-
+        this.trabajadores = new HashMap<String, Integer>();
     }
 
     public Proyectos(String idProyecto, int horas, ArrayList<String> caracteristicas, String titulo,
             HashMap<String, Integer> trabajadores) {
         this.idProyecto = idProyecto;
         this.horas = horas;
-        this.caracteristicas = caracteristicas;
+        this.skills = caracteristicas;
         this.titulo = titulo;
-        this.trabajaores = trabajadores;
+        this.trabajadores = trabajadores;
     }
 
     public String getIdProyecto() {
@@ -50,26 +49,54 @@ public class Proyectos {
         this.titulo = titulo;
     }
 
-    public ArrayList<String> getCaracteristicas() {
-        return caracteristicas;
+    public ArrayList<String> getSkills() {
+        return skills;
     }
 
-    public void setCaracteristicas(ArrayList<String> caracteristicas) {
-        this.caracteristicas = caracteristicas;
+    public void setSkills(ArrayList<String> skills) {
+        this.skills = skills;
+    }
+
+    public void addSkills(String skills) {
+        this.skills.add(skills);
+    }
+
+    public void borrarSkills(String skills) {
+        if (this.skills.contains(skills)) {
+            this.skills.remove(skills);
+        } else {
+            System.out.println("No existe");
+        }
     }
 
     @Override
     public String toString() {
-        return "Proyectos [idProyecto=" + idProyecto + ", horas=" + horas + ", caracteristicas=" + caracteristicas
+        return "Proyectos [idProyecto=" + idProyecto + ", horas=" + horas + ", caracteristicas=" + skills 
                 + ", titulo=" + titulo + "]";
     }
 
-    public HashMap<String, Integer> getTrabajaores() {
-        return trabajaores;
+    public HashMap<String, Integer> getTrabajadores() {
+        return trabajadores;
     }
 
-    public void setTrabajaores(HashMap<String, Integer> trabajaores) {
-        this.trabajaores = trabajaores;
+    public void setTrabajadores(HashMap<String, Integer> trabajadores) {
+        this.trabajadores = trabajadores;
+    }
+
+    public void addTrabajadores(String dni, int horas) {
+        if (trabajadores.get(dni) == null || contarHoras() + horas > this.horas) {
+            trabajadores.put(dni, horas);
+        } else {
+            System.out.println("El trabajador ya está añadido a esta proyecto.");
+        }
+    }
+
+    public void eliminarTrabajadores(String dni) {
+        trabajadores.remove(dni);
+    }
+
+    public int contarHoras() {
+        return trabajadores.values().stream().mapToInt(Integer::intValue).sum();
     }
 
 }
