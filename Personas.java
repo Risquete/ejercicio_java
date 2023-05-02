@@ -98,4 +98,20 @@ public class Personas {
 
     }
 
+    public void addProyecto(String id, int horas) {
+        if (proyectos.get(id) == null) {
+            proyectos.put(id, horas);
+        } else {
+            System.out.println("El proyecto ya está añadido a esta persona.");
+        }
+    }
+
+    public void eliminarProyecto(String id) {
+        proyectos.remove(id);
+    }
+
+    public int contarHoras() {
+        return proyectos.values().stream().mapToInt(Integer::intValue).sum();
+    }
+
 }
