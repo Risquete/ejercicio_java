@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Proyectos {
     private String idProyecto;
     private int horas;
@@ -33,6 +35,8 @@ public class Proyectos {
         this.horas = horas;
     }
 
+ 
+
     public String[] getCaracteristicas() {
         return caracteristicas;
     }
@@ -49,6 +53,10 @@ public class Proyectos {
         this.titulo = titulo;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Proyectos [idProyecto=" + idProyecto + ", horas=" + horas + ", caracteristicas="
+                + Arrays.toString(caracteristicas) + ", titulo=" + titulo + "]";
+    }   
 
 }
