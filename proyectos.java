@@ -17,4 +17,38 @@ public class Proyectos {
         this.titulo = titulo;
     }
 
+    public String getIdProyecto() {
+        return idProyecto;
+    }
+
+    public void setIdProyecto(String idProyecto) {
+        this.idProyecto = idProyecto;
+    }
+
+    public int getHoras() {
+        return horas;
+    }
+
+    public void setHoras(int horas) {
+        this.horas = horas;
+    }
+
+    public String[] getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(String[] caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    
+
 }
