@@ -4,14 +4,14 @@ import java.util.HashMap;
 public class Proyectos {
     private String idProyecto;
     private int horas;
-    private ArrayList<String> caracteristicas;
+    private ArrayList<String> skills;
     private String titulo;
     private HashMap<String, Integer> trabajaores;
 
     public Proyectos() {
         idProyecto = "";
         horas = 0;
-        this.caracteristicas = new ArrayList<String>();
+        this.skills = new ArrayList<String>();
         this.titulo = "";
         this.trabajaores = new HashMap<String, Integer>();
 
@@ -21,7 +21,7 @@ public class Proyectos {
             HashMap<String, Integer> trabajadores) {
         this.idProyecto = idProyecto;
         this.horas = horas;
-        this.caracteristicas = caracteristicas;
+        this.skills = caracteristicas;
         this.titulo = titulo;
         this.trabajaores = trabajadores;
     }
@@ -50,12 +50,24 @@ public class Proyectos {
         this.titulo = titulo;
     }
 
-    public ArrayList<String> getCaracteristicas() {
-        return caracteristicas;
+    public ArrayList<String> getSkills() {
+        return skills;
     }
 
-    public void setCaracteristicas(ArrayList<String> caracteristicas) {
-        this.caracteristicas = caracteristicas;
+    public void setSkills(ArrayList<String> skills) {
+        this.skills = skills;
+    }
+
+    public void addSkills(String skills) {
+        this.skills.add(skills);
+    }
+
+    public void borrarSkills(String skills) {
+        if (this.skills.contains(skills)) {
+            this.skills.remove(skills);
+        } else {
+            System.out.println("No existe");
+        }
     }
 
     @Override
