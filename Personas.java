@@ -66,6 +66,7 @@ public class Personas {
         this.proyectos = proyectos;
     }
 
+
     @Override
     public String toString() {
         return "Personas [nombre=" + nombre + ", apellidos=" + apellidos + ", edad=" + edad + ", dni=" + dni
