@@ -1,16 +1,16 @@
 //Esta clase es para guardar datos personales
-public class personas{
+public class Personas {
     private String nombre;
     private String apellidos;
     private int edad;
     private String dni;
 
-    //constructor
-    public personas(){
-        nombre="";
-        apellidos="";
-        edad=0;
-        dni="00000000x";
+    // constructor
+    public Personas() {
+        nombre = "";
+        apellidos = "";
+        edad = 0;
+        dni = "";
     }
 
     public String getNombre() {
@@ -44,8 +44,10 @@ public class personas{
     public void setDni(String dni) {
         this.dni = dni;
     }
-    
 
-
+    @Override
+    public String toString() {
+        return "Personas [nombre=" + nombre + ", apellidos=" + apellidos + ", edad=" + edad + ", dni=" + dni + "]";
+    }
 
 }
