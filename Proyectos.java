@@ -6,15 +6,14 @@ public class Proyectos {
     private int horas;
     private ArrayList<String> skills;
     private String titulo;
-    private HashMap<String, Integer> trabajaores;
+    private HashMap<String, Integer> trabajadores;
 
     public Proyectos() {
         idProyecto = "";
         horas = 0;
         this.skills = new ArrayList<String>();
         this.titulo = "";
-        this.trabajaores = new HashMap<String, Integer>();
-
+        this.trabajadores = new HashMap<String, Integer>();
     }
 
     public Proyectos(String idProyecto, int horas, ArrayList<String> caracteristicas, String titulo,
@@ -23,7 +22,7 @@ public class Proyectos {
         this.horas = horas;
         this.skills = caracteristicas;
         this.titulo = titulo;
-        this.trabajaores = trabajadores;
+        this.trabajadores = trabajadores;
     }
 
     public String getIdProyecto() {
@@ -72,16 +71,32 @@ public class Proyectos {
 
     @Override
     public String toString() {
-        return "Proyectos [idProyecto=" + idProyecto + ", horas=" + horas + ", caracteristicas=" + caracteristicas
+        return "Proyectos [idProyecto=" + idProyecto + ", horas=" + horas + ", caracteristicas=" + skills 
                 + ", titulo=" + titulo + "]";
     }
 
-    public HashMap<String, Integer> getTrabajaores() {
-        return trabajaores;
+    public HashMap<String, Integer> getTrabajadores() {
+        return trabajadores;
     }
 
-    public void setTrabajaores(HashMap<String, Integer> trabajaores) {
-        this.trabajaores = trabajaores;
+    public void setTrabajadores(HashMap<String, Integer> trabajadores) {
+        this.trabajadores = trabajadores;
+    }
+
+    public void addTrabajadores(String dni, int horas) {
+        if (trabajadores.get(dni) == null || contarHoras() + horas > this.horas) {
+            trabajadores.put(dni, horas);
+        } else {
+            System.out.println("El trabajador ya está añadido a esta proyecto.");
+        }
+    }
+
+    public void eliminarTrabajadores(String dni) {
+        trabajadores.remove(dni);
+    }
+
+    public int contarHoras() {
+        return trabajadores.values().stream().mapToInt(Integer::intValue).sum();
     }
 
 }
