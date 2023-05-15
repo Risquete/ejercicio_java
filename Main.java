@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
-    public static ArrayList<Personas> stemdoers = new ArrayList<Personas>();
+    public static HashMap<String, Personas> stemdoers = new HashMap<String, Personas>();
     public static ArrayList<Proyectos> proyectos = new ArrayList<Proyectos>();
 
     public static void main(String[] args) {
@@ -61,6 +62,17 @@ public class Main {
                     System.out.println("Saliendo...");
                     break;
             }
+            System.out.println("Que desea hacer?");
+            System.out.println("1. Alta de usuario nuevo");
+            System.out.println("2. Eliminar usuario");
+            System.out.println("3. Modificar usuario");
+            System.out.println("4. Nuevo proyecto");
+            System.out.println("5. Eliminar proyecto");
+            System.out.println("6. Modificar proyecto");
+            System.out.println("7. Asignar usuario a proyecto");
+            System.out.println("8. Asignar proyecto a usuario");
+            // horas
+            System.out.println("9. Salir");
         }
 
     }
@@ -74,21 +86,78 @@ public class Main {
     }
 
     private static void proyectoUsuario() {
+        Scanner sc = new Scanner(System.in);
+        listarProyectos();
+        System.out.println("Escoja el id del proyecto: ");
+        int id = Integer.parseInt(sc.nextLine());
+        listarStemdoers();
+        System.out.println("Introduzca el DNI del Stemdoer");
+        String dni = sc.nextLine();
+        System.out.println("Introduzca el nuevo numero de horas que se le asigan al usuario");
+        int horas = sc.nextInt();
+        stemdoers.get(dni).addProyecto(dni, horas);
     }
 
     private static void usuarioProyecto() {
+        listarStemdoers();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduzca el DNI del Stemdoer");
+        String dni = sc.nextLine();
+        listarProyectos();
+        System.out.println("Escoja el id del proyecto al que agregar al usuario: ");
+        int id = Integer.parseInt(sc.nextLine());
+        System.out.println("Introduzca el nuevo numero de horas que se le asigan al usuario");
+        int horas = sc.nextInt();
+        proyectos.get(id).addTrabajadores(dni, horas);
     }
 
     private static void modificarProyecto() {
         listarProyectos();
         Scanner sc = new Scanner(System.in);
         System.out.println("Escoja el id del proyecto a modificar: ");
-        int id = Integer.parseInt(sc.nextLine());
+        int id = sc.nextInt();
         System.out.println("Que desea hacer?");
         System.out.println("1. Cambiar titulo");
         System.out.println("2. Cambiar horas");
         System.out.println("3. Agregar skills");
         System.out.println("4. Eliminar skills");
+        System.out.println("5. Salir");
+
+        int aux = sc.nextInt();
+        while (aux != 5) {
+            switch (aux) {
+                case 1:
+                    System.out.println("Introduzca el nuevo titulo");
+                    String titulo = sc.nextLine();
+                    proyectos.get(id).setTitulo(titulo);
+                    break;
+                case 2:
+                    System.out.println("Introduzca el nuevo numero de horas");
+                    int horas = sc.nextInt();
+                    proyectos.get(id).setHoras(horas);
+                    break;
+                case 3:
+                    System.out.println("Introduzca la nueva skill a agregar");
+                    String skill = sc.nextLine();
+                    proyectos.get(id).addSkills(skill);
+                    break;
+                case 4:
+                    listarSkills(id);
+                    System.out.println("Introduzc la skill a eliminar");
+                    String skill1 = sc.nextLine();
+                    proyectos.get(id).borrarSkills(skill1);
+                    break;
+                case 5:
+                    System.out.println("Saliendo...");
+                    break;
+            }
+            System.out.println("Que desea hacer?");
+            System.out.println("1. Cambiar titulo");
+            System.out.println("2. Cambiar horas");
+            System.out.println("3. Agregar skills");
+            System.out.println("4. Eliminar skills");
+            System.out.println("5. Salir");
+        }
 
     }
 
@@ -213,6 +282,21 @@ public class Main {
         System.out.println("Lista de Proyectos:");
         for (int i = 0; i < proyectos.size(); i++) {
             System.out.println(proyectos.get(i).getIdProyecto() + ". " + proyectos.get(i).getTitulo());
+        }
+    }
+
+    public static void listarStemdoers() {
+        System.out.println("Lista de Stemdoers:");
+        for (HashMap.Entry<String, Personas> entry : stemdoers.entrySet()) {
+            System.out.println(
+                    entry.getKey() + ". " + entry.getValue().getNombre() + " " + entry.getValue().getApellidos());
+        }
+    }
+
+    public static void listarSkills(int id) {
+        System.out.println("Lista de Skills:");
+        for (int i = 0; i < proyectos.get(id).getSkills().size(); i++) {
+            System.out.println(i + ". " + proyectos.get(id).getSkills().get(i));
         }
     }
 }
