@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static ArrayList<Personas> stemdoers = new ArrayList<Personas>();
-    public ArrayList<Proyectos> proyectos = new ArrayList<Proyectos>();
+    public static ArrayList<Proyectos> proyectos = new ArrayList<Proyectos>();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -18,20 +19,19 @@ public class Main {
         System.out.println("6. Modificar proyecto");
         System.out.println("7. Asignar usuario a proyecto");
         System.out.println("8. Asignar proyecto a usuario");
-        //horas
+        // horas
         System.out.println("9. Salir");
 
         int opcion;
         opcion = sc.nextInt();
-        
-        //Valida que no eliga una opcion invalida
+
+        // Valida que no eliga una opcion invalida
         while (opcion > 9) {
             System.out.println("Opcion no valida. Vuelva a seleccionar opcion");
             opcion = sc.nextInt();
         }
 
         while (opcion != 9) {
-
             switch (opcion) {
                 case 1:
                     addPersona();
@@ -46,7 +46,7 @@ public class Main {
                     addProyecto();
                     break;
                 case 5:
-                    borrarPersona();
+                    borrarProyecto();
                     break;
                 case 6:
                     modificarProyecto();
@@ -63,8 +63,14 @@ public class Main {
             }
         }
 
+    }
 
-
+    private static void borrarProyecto() {
+        listarProyectos();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Escoja el id del proyecto a eliminar: ");
+        int id = Integer.parseInt(sc.nextLine());
+        proyectos.remove(id);
     }
 
     private static void proyectoUsuario() {
@@ -74,9 +80,29 @@ public class Main {
     }
 
     private static void modificarProyecto() {
+        listarProyectos();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Escoja el id del proyecto a modificar: ");
+        int id = Integer.parseInt(sc.nextLine());
+        System.out.println("Que desea hacer?");
+        System.out.println("1. Cambiar titulo");
+        System.out.println("2. Cambiar horas");
+        System.out.println("3. Agregar skills");
+        System.out.println("4. Eliminar skills");
+
     }
 
     private static void addProyecto() {
+        Scanner sc = new Scanner(System.in);
+        String id = proyectos.size() + "";
+        System.out.println("Introduzca el título del proyecto: ");
+        String titulo = sc.nextLine();
+        System.out.println("Introduzca las horas de trabajo que necesita el proyecto: ");
+        String horas = sc.nextLine();
+        System.out.println("Introduzca las skills separadas por comas: ");
+        String skills = sc.nextLine();
+        ArrayList<String> sk = new ArrayList<String>(Arrays.asList(skills.split(",")));
+        proyectos.add(new Proyectos(id, Integer.parseInt(horas), sk, titulo));
     }
 
     public static void addPersona() {
@@ -90,19 +116,18 @@ public class Main {
             nif = sc.nextLine();
             id = buscarPersona(nif);
         }
- 
+
         System.out.println("Introduzca el nombre: ");
         String name = sc.nextLine();
         stemdoers.get(id).setNombre(name);
         System.out.println("Introduzca el apellidos: ");
         String apellidos = sc.nextLine();
         stemdoers.get(id).setApellidos(apellidos);
-        System.out.println("Introduzca el apellidos: ");
+        System.out.println("Introduzca la edad: ");
         int edad = sc.nextInt();
         stemdoers.get(id).setEdad(edad);
 
-        
-        //stemdoers.add();
+        // stemdoers.add();
     }
 
     public static void borrarPersona() {
@@ -116,11 +141,11 @@ public class Main {
             nif = sc.nextLine();
             id = buscarPersona(nif);
         }
-       
-        System.out.println("El usuario con dni: "+ nif +"Va a ser borrado, ¿esta seguro?(y/n)");
+
+        System.out.println("El usuario con dni: " + nif + "Va a ser borrado, ¿esta seguro?(y/n)");
         String confirmacion = sc.nextLine();
-        
-        if(confirmacion.equals("y")){
+
+        if (confirmacion.equals("y")) {
             stemdoers.remove(stemdoers.get(id));
         }
     }
@@ -182,5 +207,12 @@ public class Main {
             }
         }
         return -1;
+    }
+
+    public static void listarProyectos() {
+        System.out.println("Lista de Proyectos:");
+        for (int i = 0; i < proyectos.size(); i++) {
+            System.out.println(proyectos.get(i).getIdProyecto() + ". " + proyectos.get(i).getTitulo());
+        }
     }
 }
