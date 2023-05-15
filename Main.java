@@ -37,25 +37,25 @@ public class Main {
                     addPersona();
                     break;
                 case 2:
-                    borrarPersona(p);
+                    borrarPersona();
                     break;
                 case 3:
                     modificar();
                     break;
                 case 4:
-                    addProyecto(p);
+                    addProyecto();
                     break;
                 case 5:
-                    borrarPersona(p);
+                    borrarPersona();
                     break;
                 case 6:
-                    modificarProyecto(p);
+                    modificarProyecto();
                     break;
                 case 7:
-                    usuarioProyecto(p);
+                    usuarioProyecto();
                     break;
                 case 8:
-                    proyectoUsuario(p);
+                    proyectoUsuario();
                     break;
                 case 9:
                     System.out.println("Saliendo...");
@@ -67,7 +67,19 @@ public class Main {
 
     }
 
-    public void addPersona() {
+    private static void proyectoUsuario() {
+    }
+
+    private static void usuarioProyecto() {
+    }
+
+    private static void modificarProyecto() {
+    }
+
+    private static void addProyecto() {
+    }
+
+    public static void addPersona() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduzca el DNI del nuevo usuario: ");
         String nif;
@@ -93,7 +105,7 @@ public class Main {
         //stemdoers.add();
     }
 
-    public void borrarPersona() {
+    public static void borrarPersona() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduzca el DNI de la persona que desea eliminar: ");
         String nif;
