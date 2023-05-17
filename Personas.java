@@ -21,6 +21,15 @@ public class Personas {
         skills = new ArrayList<String>();
     }
 
+    public Personas(String nombre, String apellidos, int edad, String dni) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.edad = edad;
+        this.dni = dni;
+        this.proyectos = new HashMap<String, Integer>();
+        this.skills = new ArrayList<String>();
+    }
+
     public Personas(String nombre, String apellidos, int edad, String dni, HashMap<String, Integer> proyectos,
             ArrayList<String> skills) {
         this.nombre = nombre;
@@ -74,7 +83,7 @@ public class Personas {
     @Override
     public String toString() {
         return "Personas [nombre=" + nombre + ", apellidos=" + apellidos + ", edad=" + edad + ", dni=" + dni
-                + ", proyectos=" + proyectos + "]";
+                + ", proyectos=" + proyectos + ", skills=" + skills + "]";
     }
 
     public ArrayList<String> getSkills() {

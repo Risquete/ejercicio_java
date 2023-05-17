@@ -16,12 +16,20 @@ public class Proyectos {
         this.trabajadores = new HashMap<String, Integer>();
     }
 
-    public Proyectos(String idProyecto, int horas, ArrayList<String> caracteristicas, String titulo) {
+    public Proyectos(String idProyecto, int horas, ArrayList<String> skills, String titulo) {
         this.idProyecto = idProyecto;
         this.horas = horas;
-        this.skills = caracteristicas;
+        this.skills = skills;
         this.titulo = titulo;
-        this.trabajadores =  new HashMap<String, Integer>();
+        this.trabajadores = new HashMap<String, Integer>();
+    }
+
+    public Proyectos(String idProyecto, int horas, String titulo) {
+        this.idProyecto = idProyecto;
+        this.horas = horas;
+        this.skills = new ArrayList<String>();
+        this.titulo = titulo;
+        this.trabajadores = new HashMap<String, Integer>();
     }
 
     public String getIdProyecto() {
@@ -70,8 +78,8 @@ public class Proyectos {
 
     @Override
     public String toString() {
-        return "Proyectos [idProyecto=" + idProyecto + ", horas=" + horas + ", caracteristicas=" + skills
-                + ", titulo=" + titulo + "]";
+        return "Proyectos [idProyecto=" + idProyecto + ", horas=" + horas + ", skills=" + skills + ", titulo=" + titulo
+                + ", trabajadores=" + trabajadores + "]";
     }
 
     public HashMap<String, Integer> getTrabajadores() {
